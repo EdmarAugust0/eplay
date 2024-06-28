@@ -4,6 +4,8 @@ import Hero from '../../components/Hero'
 import Section from '../../components/Section'
 import Gallery from '../../components/Gallery'
 
+import residentEvil from '../../assets/images/resident.png'
+
 const Product = () => {
   const { id } = useParams()
 
@@ -37,7 +39,7 @@ const Product = () => {
         </p>
       </Section>
       <Section title="Galeria" background="black">
-        <Gallery />
+        <Gallery defaultCover={residentEvil} name="Resident Evil" />
       </Section>
     </>
   )

@@ -11,6 +11,7 @@ export const Banner = styled.div`
   padding-top: 16px;
   background-repeat: no-repeat;
   background-position: center;
+  background-size: 100%;
 
   &::after {
     position: absolute;
