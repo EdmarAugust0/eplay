@@ -10,32 +10,18 @@ import zoom from '../../assets/images/mais-zoom 1.svg'
 import play from '../../assets/images/botao-play 1.svg'
 import close from '../../assets/images/close.svg'
 
-const mock: GalleryItem[] = [
-  {
-    type: 'image',
-    url: spiderman
-  },
-  {
-    type: 'image',
-    url: hogwarts
-  },
-  {
-    type: 'video',
-    url: 'https://www.youtube.com/embed/qV5x3R6zrzs?si=HoGVg1QKjJZWJrx3'
-  }
-]
-
 type Props = {
   defaultCover: string
   name: string
+  items: GalleryItem[]
 }
 
 interface ModalState extends GalleryItem {
   isVisible: boolean
 }
 
-const Gallery = ({ defaultCover, name }: Props) => {
-  const [modal, setModal] = useState({
+const Gallery = ({ defaultCover, name, items }: Props) => {
+  const [modal, setModal] = useState<ModalState>({
     isVisible: false,
     type: 'image',
     url: ''
@@ -62,7 +48,7 @@ const Gallery = ({ defaultCover, name }: Props) => {
   return (
     <>
       <Items>
-        {mock.map((media, index) => (
+        {items.map((media, index) => (
           <Item
             key={media.url}
             onClick={() => {
