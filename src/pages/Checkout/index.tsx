@@ -9,9 +9,11 @@ import { InputGroup, Row, TabButton } from './styles'
 import boleto from '../../assets/images/barcode 1.svg'
 import cartao from '../../assets/images/credit-card 1.svg'
 import { useFormik } from 'formik'
+import { usePurchaseMutation } from '../../services/api'
 
 const Checkout = () => {
-  const [payWithCard, setPayWithCard] = useState(true)
+  const [payWithCard, setPayWithCard] = useState(false)
+  const [purchase, { data, isLoading, isError }] = usePurchaseMutation()
 
   const form = useFormik({
     initialValues: {
@@ -39,7 +41,6 @@ const Checkout = () => {
       cpf: Yup.string()
         .max(14, 'O campo precisa ter 14 caracteres, incluindo pontos e traços')
         .min(14, 'O campo precisa ter 14 caracteres, incluindo pontos e traços')
-        .email('E-mail inválido')
         .required('O campo é obrigatório'),
       deliveryEmail: Yup.string()
         .email('E-mail inválido')
@@ -74,7 +75,39 @@ const Checkout = () => {
       )
     }),
     onSubmit: (values) => {
-      console.log(values)
+      purchase({
+        billing: {
+          name: values.fullName,
+          email: values.email,
+          document: values.cpf
+        },
+        delivery: {
+          email: values.deliveryEmail
+        },
+        payment: {
+          installments: 1,
+          card: {
+            active: payWithCard,
+            name: values.cardName,
+            number: values.cardNumber,
+            code: Number(values.cardCode),
+            owner: {
+              document: values.cpfCardOwner,
+              name: values.cardOwner
+            },
+            expires: {
+              month: 1,
+              year: 2024
+            }
+          }
+        },
+        products: [
+          {
+            id: 1,
+            price: 100
+          }
+        ]
+      })
     }
   })
 
@@ -326,7 +359,11 @@ const Checkout = () => {
           </div>
         </>
       </Card>
-      <Button type="button" title="Clique aqui para finalizar a compra">
+      <Button
+        type="button"
+        title="Clique aqui para finalizar a compra"
+        onClick={form.handleSubmit}
+      >
         Finalizar compra
       </Button>
     </form>
