@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux'
 import Tag from '../Tag'
 import Button from '../Button'
 import { Game } from '../../pages/Home'
-import { formataPreco } from '../ProductsList'
+import { formataPreco } from '../../utils'
 import { add, open } from '../../store/reducers/cart'
 
 import { Banner, InfoBox } from './styles'
