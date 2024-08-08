@@ -7,6 +7,7 @@ import {
 } from '../../services/api'
 
 import ProductsList from '../../components/ProductsList'
+import Loader from '../../components/Loader'
 
 const Categories = () => {
   const { data: actionGames } = useGetActionGamesQuery()
@@ -51,7 +52,7 @@ const Categories = () => {
       </>
     )
   }
-  return <h4>Carregando...</h4>
+  return <Loader />
 }
 
 export default Categories

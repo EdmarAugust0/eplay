@@ -4,15 +4,17 @@ import Product from '../Product'
 import { formataPreco } from '../../utils'
 
 import { Container, List, TitleSection } from './styles'
+import Loader from '../Loader'
 
 export type Props = {
   title: string
   background: 'gray' | 'black'
-  games: Game[]
+  games?: Game[]
   id: string
+  isLoading?: boolean
 }
 
-const ProductsList = ({ title, background, games, id }: Props) => {
+const ProductsList = ({ title, background, games, id, isLoading }: Props) => {
   const getGameTags = (game: Game) => {
     const tags = []
 
@@ -31,24 +33,29 @@ const ProductsList = ({ title, background, games, id }: Props) => {
     return tags
   }
 
+  if (isLoading) {
+    return <Loader />
+  }
+
   return (
     <Container id={id} background={background}>
       <div className="container">
         <TitleSection>{title}</TitleSection>
         <List>
-          {games.map((game) => (
-            <li key={game.id}>
-              <Product
-                id={game.id}
-                category={game.details.category}
-                description={game.description}
-                image={game.media.thumbnail}
-                infos={getGameTags(game)}
-                system={game.details.system}
-                title={game.name}
-              />
-            </li>
-          ))}
+          {games &&
+            games.map((game) => (
+              <li key={game.id}>
+                <Product
+                  id={game.id}
+                  category={game.details.category}
+                  description={game.description}
+                  image={game.media.thumbnail}
+                  infos={getGameTags(game)}
+                  system={game.details.system}
+                  title={game.name}
+                />
+              </li>
+            ))}
         </List>
       </div>
     </Container>
