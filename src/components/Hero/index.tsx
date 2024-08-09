@@ -2,7 +2,6 @@ import { useDispatch } from 'react-redux'
 
 import Tag from '../Tag'
 import Button from '../Button'
-import { Game } from '../../pages/Home'
 import { formataPreco } from '../../utils'
 import { add, open } from '../../store/reducers/cart'
 
@@ -32,7 +31,7 @@ const Hero = ({ game }: Props) => {
           <p>
             {game.prices.discount && (
               <p>
-                De <s>{formataPreco(game.prices.old)}</s> <br />
+                De <span>{formataPreco(game.prices.old)}</span> <br />
               </p>
             )}
             {game.prices.current && (

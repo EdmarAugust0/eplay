@@ -47,6 +47,10 @@ export const Banner = styled.div`
 
     p {
       margin: 16px 0px;
+
+      span {
+        text-decoration: line-through;
+      }
     }
   }
 `

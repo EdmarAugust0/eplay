@@ -43,4 +43,8 @@ export const Titulo = styled.h2`
 export const Precos = styled.p`
   font-size: 24px;
   margin-top: 24px;
+
+  span {
+    text-decoration: line-through;
+  }
 `

@@ -1,12 +1,11 @@
 import { useState } from 'react'
 
-import { GalleryItem } from '../../pages/Home'
-
 import * as S from './styles'
 
 import zoom from '../../assets/images/mais-zoom 1.svg'
 import play from '../../assets/images/botao-play 1.svg'
 import close from '../../assets/images/close.svg'
+import { Overlay } from '../Cart/styles'
 
 type Props = {
   defaultCover: string
@@ -82,7 +81,7 @@ const Gallery = ({ defaultCover, name, items }: Props) => {
             <iframe frameBorder={0} src={modal.url} />
           )}
         </S.ModalContent>
-        <div className="overlay" onClick={closeModal}></div>
+        <Overlay onClick={closeModal}></Overlay>
       </S.Modal>
     </>
   )

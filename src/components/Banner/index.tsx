@@ -21,7 +21,7 @@ const Banner = () => {
         <div>
           <S.Titulo>{game.name}</S.Titulo>
           <S.Precos>
-            De <s>{formataPreco(game.prices.old)}</s> <br />
+            De <span>{formataPreco(game.prices.old)}</span> <br />
             por apenas {formataPreco(game.prices.current)}
           </S.Precos>
         </div>
